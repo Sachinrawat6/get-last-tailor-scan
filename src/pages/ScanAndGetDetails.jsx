@@ -150,7 +150,7 @@ const ScanAndGetDetails = () => {
   }, [isScanning]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-gray-50 to-indigo-50 px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-gray-50 to-indigo-50 px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -178,7 +178,7 @@ const ScanAndGetDetails = () => {
         </div>
 
         {/* Main Card */}
-        <div className="overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5">
+        <div className="overflow-hidden rounded-2xl bg-white shadow-xs ring-1 ring-black/5">
           <div className="p-6 sm:p-8">
             {/* Search Section */}
             <div className="space-y-4">
@@ -409,7 +409,7 @@ const ScanAndGetDetails = () => {
                     {tailor.map((t, index) => (
                       <li key={`${t.order_id}-${t.scanned_timestamp}`} className="py-4">
                         <div className="flex items-center space-x-4">
-                          <div className="flex-shrink-0">
+                          <div className="shrink-0">
                             <div
                               className={`inline-flex h-10 w-10 items-center justify-center rounded-full ${
                                 index === 0
@@ -433,16 +433,13 @@ const ScanAndGetDetails = () => {
                             </div>
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-gray-900">
-                              Tailor #{t.order_id}
+                            <p className=" text-sm text-gray-500">
+                              <span className="text-blue-600 font-semibold">Tailor</span>:{' '}
+                              {t.employees.user_name?.split(' / ')[0] || '—'}
                             </p>
-                            <p className="truncate text-sm text-gray-500">
-                              Location: {t.locations.id}
-                            </p>
-                          </div>
-                          <div className="flex-shrink-0 text-right">
                             <p className="text-sm text-gray-500">
                               {formatTimestamp(t.scanned_timestamp)}
+                              {console.log('Scanned Timestamp:', t)}
                             </p>
                             {index === 0 && (
                               <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
@@ -450,6 +447,17 @@ const ScanAndGetDetails = () => {
                               </span>
                             )}
                           </div>
+                          {/* <div className="shrink-0 text-right">
+                            <p className="text-sm text-gray-500">
+                              {formatTimestamp(t.scanned_timestamp)}
+                              {console.log('Scanned Timestamp:', t)}
+                            </p>
+                            {index === 0 && (
+                              <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
+                                Latest
+                              </span>
+                            )}
+                          </div> */}
                         </div>
                       </li>
                     ))}
